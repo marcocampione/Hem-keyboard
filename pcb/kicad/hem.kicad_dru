@@ -1,0 +1,9 @@
+(version 1)
+# SK6812MINI-E reverse-mount: pads sit ~0.25mm from the footprint's own light cutout (by design, fabs handle it)
+(rule "rgb_led_cutout"
+	(constraint edge_clearance (min 0.2mm))
+	(condition "A.memberOfFootprint('RGB*')"))
+# a few GND pads (an LED, a decap) reach the pour with one spoke; they also have routed GND tracks
+(rule "gnd_one_spoke"
+	(constraint min_resolved_spokes 1)
+	(condition "A.NetName == 'GND'"))
